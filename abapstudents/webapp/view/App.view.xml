@@ -9,13 +9,13 @@
         <App id="app">
             <pages>
                 <Page id="page"
-                    title="{i18n>title}">
+                    title="test">
                     <Table id="tblFlights"
                         inset="false"
                         items="{
-			path: '/StudentSet',
+			path: 'cds>ZAS_113_C_GAMES',
 			sorter: {
-				path: 'Studentid'
+				path: 'GameID'
 			}
 		}">
 
@@ -36,10 +36,10 @@
                         <items>
                             <ColumnListItem vAlign="Middle">
                                 <cells>
+                                    <Text text="{GameID}" />
                                     <Text text="{Name}" />
-                                    <Text text="{Degree}" />
-                                    <Text text="{Console}" />
-                                    <Text text="{Gender}" />
+                                    <Text text="{Genre}" />
+                                    <Text text="{Publisher}" />
                                 </cells>
                             </ColumnListItem>
                         </items>
