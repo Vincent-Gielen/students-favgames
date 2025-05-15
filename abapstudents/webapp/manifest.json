@@ -1,0 +1,138 @@
+{
+    "_version": "1.28.0",
+    "sap.app": {
+        "id": "abapstudents",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.16.5",
+            "toolsId": "87742208-8e90-4425-986a-6253ffa6254e"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZAS_113_STUDENT_GW_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZAS_113_C_GAMES_CDS_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZAS_113_C_GAMES_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/mainService/ZAS_113_C_GAMES_CDS_VAN.xml"
+                }
+            },
+            "cdsService": {
+                "uri": "/sap/opu/odata/sap/ZAS_113_C_GAMES_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZAS_113_C_GAMES_CDS_VAN"
+                    ],
+                    "localUri": "localService/cdsService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.84.18",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "abapstudentsfavgames.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "cds": {
+                "dataSource": "cdsService",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "abapstudents.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteApp",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetApp"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetApp": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "App",
+                    "viewName": "App"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "abapstudents.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}

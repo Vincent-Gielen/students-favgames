@@ -1,0 +1,51 @@
+<mvc:View controllerName="abapstudents.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+>
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page"
+                    title="{i18n>title}">
+                    <Table id="tblFlights"
+                        inset="false"
+                        items="{
+			path: '/StudentSet',
+			sorter: {
+				path: 'Studentid'
+			}
+		}">
+
+                        <columns>
+                            <Column width="12em">
+                                <Text text="Flight Date" />
+                            </Column>
+                            <Column width="12em">
+                                <Text text="Airline" />
+                            </Column>
+                            <Column width="12em">
+                                <Text text="Connection" />
+                            </Column>
+                            <Column width="12em">
+                                <Text text="Price" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem vAlign="Middle">
+                                <cells>
+                                    <Text text="{Name}" />
+                                    <Text text="{Degree}" />
+                                    <Text text="{Console}" />
+                                    <Text text="{Gender}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
