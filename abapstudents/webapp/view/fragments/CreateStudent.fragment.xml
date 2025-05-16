@@ -13,7 +13,7 @@
           <core:Title text="{i18n>dialog.student.section.general}" />
 
           <Label text="{i18n>dialog.student.field.name}" required="true" />
-          <Input value="{input>/Name}" valueState="{= ${validation>/Name} ? 'None' : 'Error'}" />
+          <Input value="{input>/Name}" />
 
           <Label text="{i18n>dialog.student.field.gender}" />
           <Input value="{input>/Gender}" />

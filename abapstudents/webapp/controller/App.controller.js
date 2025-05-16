@@ -35,12 +35,12 @@ sap.ui.define(
 
       _openStudentDialog: async function () {
         if (!this._studentDialog) {
-          this._loadDialog("CreateProduct").then((oDialog) => {
-            this._oCreateProductDialog = oDialog;
+          this._loadDialog("CreateStudent").then((oDialog) => {
+            this._studentDialog = oDialog; // ✅ Corrected property
             oDialog.open();
           });
         } else {
-          this._oCreateProductDialog.open();
+          this._studentDialog.open(); // ✅ Consistent usage
         }
       },
 
@@ -76,7 +76,7 @@ sap.ui.define(
         return new Promise((resolve, reject) => {
           Fragment.load({
             id: this.getView().getId(),
-            name: `ui5.product.list.view.fragments.${sFragmentName}`,
+            name: `abapstudents.view.fragments.${sFragmentName}`,
             controller: this,
           }).then((oDialog) => {
             this.getView().addDependent(oDialog);
