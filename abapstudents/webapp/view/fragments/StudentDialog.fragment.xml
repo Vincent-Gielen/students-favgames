@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form">
+  <Dialog id="studentDialog" title="{i18n>dialog.student.title}" contentWidth="600px"
+    afterClose="onAfterCloseDialog">
+    <content>
+      <form:SimpleForm
+        editable="true"
+        layout="ResponsiveGridLayout"
+        labelSpanM="3" labelSpanL="4" labelSpanXL="4"
+        columnsL="2" columnsXL="2"
+        emptySpanL="1" emptySpanXL="1">
+
+        <form:content>
+          <core:Title text="{i18n>dialog.student.section.general}" />
+
+          <Label text="{i18n>dialog.student.field.name}" required="true" />
+          <Input value="{input>/Name}" valueState="{= ${validation>/Name} ? 'None' : 'Error'}" />
+
+          <Label text="{i18n>dialog.student.field.gender}" />
+          <Input value="{input>/Gender}" />
+
+          <Label text="{i18n>dialog.student.field.degree}" />
+          <Input value="{input>/Degree}" />
+
+          <Label text="{i18n>dialog.student.field.console}" />
+          <Input value="{input>/Console}" />
+        </form:content>
+      </form:SimpleForm>
+    </content>
+
+    <beginButton>
+      <Button type="Emphasized" text="{i18n>dialog.student.save}" press="onSaveStudent" />
+    </beginButton>
+    <endButton>
+      <Button text="{i18n>dialog.student.cancel}" press="onCancelStudent" />
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

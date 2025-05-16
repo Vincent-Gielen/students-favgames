@@ -1,51 +1,191 @@
-<mvc:View controllerName="abapstudents.controller.App"
+<mvc:View
+    controllerName="abapstudents.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:l="sap.ui.layout"
-    xmlns:core="sap.ui.core"
-    xmlns:f="sap.ui.layout.form"
->
-    <Shell id="shell">
-        <App id="app">
-            <pages>
-                <Page id="page"
-                    title="test">
-                    <Table id="tblFlights"
-                        inset="false"
-                        items="{
-			path: 'cds>ZAS_113_C_GAMES',
-			sorter: {
-				path: 'GameID'
-			}
-		}">
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    height="100%">
 
-                        <columns>
-                            <Column width="12em">
-                                <Text text="Flight Date" />
-                            </Column>
-                            <Column width="12em">
-                                <Text text="Airline" />
-                            </Column>
-                            <Column width="12em">
-                                <Text text="Connection" />
-                            </Column>
-                            <Column width="12em">
-                                <Text text="Price" />
-                            </Column>
-                        </columns>
-                        <items>
-                            <ColumnListItem vAlign="Middle">
-                                <cells>
-                                    <Text text="{GameID}" />
-                                    <Text text="{Name}" />
-                                    <Text text="{Genre}" />
-                                    <Text text="{Publisher}" />
-                                </cells>
-                            </ColumnListItem>
-                        </items>
-                    </Table>
-                </Page>
-            </pages>
-        </App>
-    </Shell>
+    <f:DynamicPage id="dynamicPageId"
+        stickySubheaderProvider="iconTabBar"
+        class="sapUiNoContentPadding">
+
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>dynamicPage.title}" />
+                </f:heading>
+                <f:expandedContent>
+                    <Label text="{i18n>dynamicPage.subtitle}" />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <Label text="{i18n>dynamicPage.subtitle}" />
+                </f:snappedContent>
+                <f:snappedTitleOnMobile>
+                    <Title text="{i18n>dynamicPage.title}" />
+                </f:snappedTitleOnMobile>
+                <f:actions>
+                    <Button text="{i18n>dynamicPage.actions.add}" type="Emphasized"
+                        press="onPressCreateNewStudent" />
+                    <Button text="{i18n>dynamicPage.actions.delete}" type="Transparent" />
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <layout:HorizontalLayout allowWrapping="true">
+                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                        <ObjectAttribute title="{i18n>header.name.label}"
+                            text="{i18n>header.name.value}" />
+                        <HBox>
+                            <Link
+                                text="{i18n>header.github.link}"
+                                href="https://github.com/vincentgielen0/ERP-II-2425-VG"
+                                target="_blank"
+                                class="sapUiSmallMarginEnd" />
+                        </HBox>
+                    </layout:VerticalLayout>
+                </layout:HorizontalLayout>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <!-- DynamicPage Content -->
+        <f:content>
+            <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+                <items>
+
+                    <!-- Students Tab -->
+                    <IconTabFilter text="{i18n>tab.students}" key="students">
+                        <Table
+                            id="studentsTable"
+                            items="{ path: '/StudentSet' }"
+                            inset="false"
+                            sticky="HeaderToolbar,ColumnHeaders"
+                            class="sapUiSmallNegativeMarginBeginEnd"
+                            width="auto">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Label text="{i18n>studentsTable.title}" />
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column width="10%">
+                                    <Text text="{i18n>studentsTable.column.id}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>studentsTable.column.name}" />
+                                </Column>
+                                <Column width="5%">
+                                    <Text text="{i18n>studentsTable.column.gender}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>studentsTable.column.degree}" />
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="{i18n>studentsTable.column.console}" />
+                                </Column>
+                                <Column width="6%">
+                                    <Text text="{i18n>studentsTable.column.actions}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{Studentid}" />
+                                        <Text text="{Name}" />
+                                        <Text text="{Gender}" />
+                                        <Text text="{Degree}" />
+                                        <Text text="{Console}" />
+                                        <HBox justifyContent="End" alignItems="Center">
+                                            <Button icon="sap-icon://edit" type="Transparent"
+                                                tooltip="{i18n>studentsTable.button.edit.tooltip}"
+                                                press="onEditStudent" />
+                                            <Button icon="sap-icon://delete" type="Transparent"
+                                                tooltip="{i18n>studentsTable.button.delete.tooltip}"
+                                                press="onDeleteStudent" />
+                                        </HBox>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+
+                    <!-- Games Tab -->
+                    <IconTabFilter text="{i18n>tab.games}" key="games">
+                        <Table
+                            id="gamesTable"
+                            items="{ path: 'cds>/ZAS_113_C_GAMES' }"
+                            inset="false"
+                            sticky="HeaderToolbar,ColumnHeaders"
+                            class="sapUiSmallNegativeMarginBeginEnd"
+                            width="auto">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Label text="{i18n>gamesTable.title}" />
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column width="4%">
+                                    <Text text="{i18n>gamesTable.column.id}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>gamesTable.column.title}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>gamesTable.column.genre}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>gamesTable.column.publisher}" />
+                                </Column>
+                                <Column width="8%">
+                                    <Text text="{i18n>gamesTable.column.platform}" />
+                                </Column>
+                                <Column width="8%">
+                                    <Text text="{i18n>gamesTable.column.releaseDate}" />
+                                </Column>
+                                <Column width="8%">
+                                    <Text text="{i18n>gamesTable.column.coverPhoto}" />
+                                </Column>
+                                <Column width="40%">
+                                    <Text text="{i18n>gamesTable.column.description}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{cds>GameID}" />
+                                        <Text text="{cds>Name}" />
+                                        <Text text="{cds>Genre}" />
+                                        <Text text="{cds>Publisher}" />
+                                        <Text text="{cds>Platform}" />
+                                        <Text
+                                            text="{
+                                                path: 'cds>ReleaseDate',
+                                                type: 'sap.ui.model.type.Date',
+                                                formatOptions: { pattern: 'dd-MM-yyyy' }
+                                            }" />
+                                        <Link text="{i18n>gamesTable.cover.linkText}"
+                                            href="{cds>CoverUrl}" target="_blank" />
+                                        <TextArea value="{cds>Description}" rows="6" width="100%" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </f:content>
+
+        <!-- DynamicPage Footer -->
+        <f:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button type="Accept" text="{i18n>dynamicPage.actions.accept}" />
+                <Button type="Reject" text="{i18n>dynamicPage.actions.reject}" />
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
 </mvc:View>
