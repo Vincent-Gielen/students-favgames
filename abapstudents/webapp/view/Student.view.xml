@@ -1,0 +1,37 @@
+<mvc:View
+    controllerName="abapstudents.controller.Student"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    height="100%">
+
+    <Page
+        title="{i18n>studentDetail.title}"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+
+        <content>
+            <form:SimpleForm
+                layout="ResponsiveGridLayout"
+                labelSpanL="4"
+                columnsL="1"
+                editable="false">
+
+                <form:content>
+                    <Label text="{i18n>studentDetail.labelName}" />
+                    <Text text="{Name}" />
+
+                    <Label text="{i18n>studentDetail.labelGender}" />
+                    <Text text="{Gender}" />
+
+                    <Label text="{i18n>studentDetail.labelDegree}" />
+                    <Text text="{Degree}" />
+
+                    <Label text="{i18n>studentDetail.labelConsole}" />
+                    <Text text="{Console}" />
+                </form:content>
+
+            </form:SimpleForm>
+        </content>
+    </Page>
+</mvc:View>

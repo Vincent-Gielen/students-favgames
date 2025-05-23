@@ -1,6 +1,11 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form">
-  <Dialog id="studentDialog" title="{i18n>dialog.student.title}" contentWidth="600px"
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
+>
+  <Dialog
+    id="studentDialog"
+    title="{= ${input>/Studentid} ? ${i18n>dialog.student.title.edit} : ${i18n>dialog.student.title.create} }"
+    contentWidth="600px"
     afterClose="onAfterCloseDialog">
+
     <content>
       <form:SimpleForm
         editable="true"
@@ -16,20 +21,40 @@
           <Input value="{input>/Name}" />
 
           <Label text="{i18n>dialog.student.field.gender}" />
-          <Input value="{input>/Gender}" />
+          <Select selectedKey="{input>/Gender}">
+            <items>
+              <core:Item key="" text="Select Gender" />
+              <core:Item key="M" text="Male" />
+              <core:Item key="F" text="Female" />
+              <core:Item key="X" text="Unknown" />
+            </items>
+          </Select>
 
           <Label text="{i18n>dialog.student.field.degree}" />
           <Input value="{input>/Degree}" />
 
           <Label text="{i18n>dialog.student.field.console}" />
-          <Input value="{input>/Console}" />
+          <Select selectedKey="{input>/Console}">
+            <items>
+              <core:Item key="" text="Select Console" />
+              <core:Item key="PC" text="PC" />
+              <core:Item key="XBOX" text="Xbox" />
+              <core:Item key="PLAYSTATION" text="PlayStation" />
+              <core:Item key="NINTENDO" text="Nintendo" />
+              <core:Item key="WII" text="Wii" />
+            </items>
+          </Select>
         </form:content>
       </form:SimpleForm>
     </content>
 
     <beginButton>
-      <Button type="Emphasized" text="{i18n>dialog.student.save}" press="onSaveStudent" />
+      <Button
+        type="Emphasized"
+        text="{= ${input>/Studentid} ? ${i18n>dialog.student.save.edit} : ${i18n>dialog.student.save.create} }"
+        press="onSaveStudent" />
     </beginButton>
+
     <endButton>
       <Button text="{i18n>dialog.student.cancel}" press="onCancelStudent" />
     </endButton>
