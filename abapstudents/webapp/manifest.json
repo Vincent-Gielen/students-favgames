@@ -109,25 +109,25 @@
       },
       "routes": [
         {
-          "name": "RouteApp",
-          "pattern": ":?query:",
-          "target": ["TargetApp"]
+          "name": "appHome",
+          "pattern": "",
+          "target": ["Main"]
         },
         {
           "name": "RouteStudent",
           "pattern": "student/{Studentid}",
-          "target": ["TargetStudent"]
+          "target": ["Student"]
         }
       ],
       "targets": {
-        "TargetApp": {
+        "Main": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "App",
-          "viewName": "App"
+          "viewId": "Main",
+          "viewName": "Main"
         },
-        "TargetStudent": {
+        "Student": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,

@@ -3,35 +3,118 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
     height="100%">
 
     <Page
-        title="{i18n>studentDetail.title}"
-        showNavButton="true"
-        navButtonPress="onNavBack">
+        title="{Studentid} - {Name}">
+        <!-- showNavButton="true"
+        navButtonPress="onNavBack" -->
 
         <content>
-            <form:SimpleForm
-                layout="ResponsiveGridLayout"
-                labelSpanL="4"
-                columnsL="1"
-                editable="false">
+            <!-- Student Details Section -->
+            <Panel headerText="{i18n>studentDetail.panelTitle}" expandable="true" expanded="true">
+                <form:SimpleForm
+                    layout="ResponsiveGridLayout"
+                    labelSpanL="4"
+                    columnsL="1"
+                    editable="false">
 
-                <form:content>
-                    <Label text="{i18n>studentDetail.labelName}" />
-                    <Text text="{Name}" />
+                    <form:content>
+                        <Label text="{i18n>studentDetail.labelStudentId}" />
+                        <ObjectStatus text="{Studentid}" />
 
-                    <Label text="{i18n>studentDetail.labelGender}" />
-                    <Text text="{Gender}" />
+                        <Label text="{i18n>studentDetail.labelName}" />
+                        <ObjectStatus text="{Name}" />
 
-                    <Label text="{i18n>studentDetail.labelDegree}" />
-                    <Text text="{Degree}" />
+                        <Label text="{i18n>studentDetail.labelGender}" />
+                        <ObjectStatus text="{Gender}" />
 
-                    <Label text="{i18n>studentDetail.labelConsole}" />
-                    <Text text="{Console}" />
-                </form:content>
+                        <Label text="{i18n>studentDetail.labelDegree}" />
+                        <ObjectStatus text="{Degree}" />
 
-            </form:SimpleForm>
+                        <Label text="{i18n>studentDetail.labelConsole}" />
+                        <ObjectStatus text="{Console}" />
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+
+            <!-- Favourite Games Section -->
+            <Panel
+                headerText="{i18n>studentDetail.favouriteGamesTitle}"
+                expandable="true"
+                expanded="true"
+                class="sapUiResponsiveContentPadding">
+
+                <Table
+                    items="{to_favouriteGames}"
+                    width="100%"
+                    inset="false"
+                    class="sapUiResponsiveMargin"
+                    noDataText="No favourite games found">
+
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="{i18n>studentDetail.favouriteGamesTitle}" level="H6" />
+                        </Toolbar>
+                    </headerToolbar>
+
+                    <columns>
+                        <Column>
+                            <Text text="{i18n>gamesTable.columnGameId}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>gamesTable.columnName}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>gamesTable.columnPlatform}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>gamesTable.columnGenre}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>gamesTable.columnPublisher}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>gamesTable.columnReleaseDate}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>gamesTable.columnCover}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>gamesTable.columnActions}" />
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{Gameid}" />
+                                <Text text="{Name}" />
+                                <Text text="{Platform}" />
+                                <Text text="{Genre}" />
+                                <Text text="{Publisher}" />
+                                <Text
+                                    text="{ path: 'ReleaseDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd-MM-yyyy' } }"
+                                />
+                                <Link
+                                    text="{i18n>gamesTable.cover.linkText}"
+                                    href="{CoverUrl}"
+                                    target="_blank"
+                                />
+                                <Button
+                                    icon="sap-icon://navigation-right-arrow"
+                                    tooltip="Open Game"
+                                    type="Transparent"
+                                    press="onOpenGamePress"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </Panel>
+
         </content>
     </Page>
 </mvc:View>
