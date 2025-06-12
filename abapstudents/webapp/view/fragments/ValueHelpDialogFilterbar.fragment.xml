@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+  xmlns="sap.ui.comp.valuehelpdialog"
+  xmlns:m="sap.m"
+  xmlns:fb="sap.ui.comp.filterbar"
+  xmlns:core="sap.ui.core">
+  <ValueHelpDialog
+    title="Game"
+    ok=".onValueHelpOkPress"
+    cancel=".onValueHelpCancelPress"
+    afterClose=".onValueHelpAfterClose"
+    supportRanges="true"
+    key="GameID"
+    descriptionKey="GameName">
+    <filterBar>
+      <fb:FilterBar advancedMode="true" search=".onFilterBarSearch"
+        isRunningInValueHelpDialog="true">
+        <fb:filterGroupItems>
+          <fb:FilterGroupItem
+            groupName="__$INTERNAL$"
+            name="GameID"
+            label="Game ID"
+            visibleInFilterBar="true">
+            <fb:control>
+              <m:Input name="GameID" />
+            </fb:control>
+          </fb:FilterGroupItem>
+          <fb:FilterGroupItem
+            groupName="__$INTERNAL$"
+            name="GameName"
+            label="Game Name"
+            visibleInFilterBar="true">
+            <fb:control>
+              <m:Input name="GameName" />
+            </fb:control>
+          </fb:FilterGroupItem>
+        </fb:filterGroupItems>
+      </fb:FilterBar>
+    </filterBar>
+  </ValueHelpDialog>
+</core:FragmentDefinition>
