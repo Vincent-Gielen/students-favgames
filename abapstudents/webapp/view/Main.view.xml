@@ -59,7 +59,7 @@
                     <IconTabFilter text="{i18n>tab.students}" key="students">
                         <Table
                             id="studentsTable"
-                            items="{ path: '/StudentSet' }"
+                            items="{ path: '/StudentSet', sorter: { path: 'Name'} }"
                             inset="false"
                             sticky="HeaderToolbar,ColumnHeaders"
                             class="sapUiSmallNegativeMarginBeginEnd"
@@ -160,6 +160,8 @@
                             inset="false"
                             sticky="HeaderToolbar,ColumnHeaders"
                             class="sapUiSmallNegativeMarginBeginEnd"
+                            growing="true"
+                            growingThreshold="100"
                             width="auto">
                             <headerToolbar>
                                 <Toolbar>
@@ -208,7 +210,7 @@
                                             }" />
                                         <Link text="{i18n>gamesTable.cover.linkText}"
                                             href="{cds>CoverUrl}" target="_blank" />
-                                        <TextArea value="{cds>Description}" rows="6"
+                                        <TextArea editable="false" value="{cds>Description}" rows="6"
                                             width="100%" />
                                     </cells>
                                 </ColumnListItem>

@@ -87,13 +87,24 @@ sap.ui.define(
       onPressStudent: function (oEvent) {
         const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         const oContext = oEvent.getSource().getBindingContext();
-        const sStudentId = oContext.getProperty("Studentid");
+        const sStudentId = oContext.getProperty("Studentid");        
         oRouter.navTo("RouteStudent", { Studentid: sStudentId });
       },
 
       onSaveStudent: function () {
         const oView = this.getView();
         const oData = Object.assign({}, this._inputModel.getData());
+
+        console.log(oData);
+
+        // Convert all input fields to uppercase before saving
+        if (oData.Name) oData.Name = oData.Name.toUpperCase();
+        if (oData.Gender) oData.Gender = oData.Gender.toUpperCase();
+        if (oData.Degree) oData.Degree = oData.Degree.toUpperCase();
+        if (oData.Console) oData.Console = oData.Console.toUpperCase();
+
+        console.log(oData.Name);
+
         const oModel = oView.getModel();
         const that = this;
 
@@ -141,23 +152,35 @@ sap.ui.define(
 
       onFilterChange: function () {
         const oView = this.getView();
-        const sName = oView.byId("filterName").getValue().trim().toUpperCase();
+        const sName = oView.byId("filterName").getValue().trim();
         const sGender = oView.byId("filterGender").getSelectedKey();
-        const sDegree = oView
-          .byId("filterDegree")
-          .getValue()
-          .trim()
-          .toUpperCase();
+        const sDegree = oView.byId("filterDegree").getValue().trim();
         const sConsole = oView.byId("filterConsole").getSelectedKey();
 
         const aFilters = [];
-        if (sName) aFilters.push(new Filter("Name", FilterOperator.EQ, sName));
+        if (sName) {
+          aFilters.push(new Filter("Name", FilterOperator.EQ, sName));
+          aFilters.push(
+            new Filter("Name", FilterOperator.EQ, sName.toLowerCase())
+          );
+          aFilters.push(
+            new Filter("Name", FilterOperator.EQ, sName.toUpperCase())
+          );
+        }
         if (sGender)
           aFilters.push(new Filter("Gender", FilterOperator.EQ, sGender));
-        if (sDegree)
+        if (sDegree) {
           aFilters.push(new Filter("Degree", FilterOperator.EQ, sDegree));
+          aFilters.push(
+            new Filter("Degree", FilterOperator.EQ, sDegree.toLowerCase())
+          );
+          aFilters.push(
+            new Filter("Degree", FilterOperator.EQ, sDegree.toUpperCase())
+          );
+        }
         if (sConsole)
           aFilters.push(new Filter("Console", FilterOperator.EQ, sConsole));
+        
 
         const oTable = oView.byId("studentsTable");
         const oBinding = oTable.getBinding("items");

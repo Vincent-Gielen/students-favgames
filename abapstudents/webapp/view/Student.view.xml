@@ -48,11 +48,14 @@
                 class="sapUiResponsiveContentPadding">
 
                 <Table
-                    items="{to_favouriteGames}"
+                    id="gamesList"
+                    items="{path: 'cds>/ZAS_113_C_GAMES' }"
                     width="100%"
                     inset="false"
                     class="sapUiResponsiveMargin"
-                    noDataText="No favourite games found">
+                    noDataText="{i18n>gamesTable.noDataText}"
+                    growing="true"
+                    growingThreshold="100">
 
                     <headerToolbar>
                         <Toolbar>
@@ -86,23 +89,22 @@
                             <Text text="{i18n>gamesTable.columnActions}" />
                         </Column>
                     </columns>
-
                     <items>
                         <ColumnListItem>
                             <cells>
-                                <Text text="{Gameid}" />
-                                <Text text="{Name}" />
-                                <Text text="{Platform}" />
-                                <Text text="{Genre}" />
-                                <Text text="{Publisher}" />
+                                <Text text="{cds>GameID}" />
+                                <Text text="{cds>Name}" />
+                                <Text text="{cds>Genre}" />
+                                <Text text="{cds>Publisher}" />
+                                <Text text="{cds>Platform}" />
                                 <Text
-                                    text="{ path: 'ReleaseDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd-MM-yyyy' } }"
-                                />
-                                <Link
-                                    text="{i18n>gamesTable.cover.linkText}"
-                                    href="{CoverUrl}"
-                                    target="_blank"
-                                />
+                                    text="{
+                                                path: 'cds>ReleaseDate',
+                                                type: 'sap.ui.model.type.Date',
+                                                formatOptions: { pattern: 'dd-MM-yyyy' }
+                                            }" />
+                                <Link text="{i18n>gamesTable.cover.linkText}"
+                                    href="{cds>CoverUrl}" target="_blank" />
                                 <Button
                                     icon="sap-icon://navigation-right-arrow"
                                     tooltip="Open Game"
