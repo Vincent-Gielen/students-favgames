@@ -63,6 +63,9 @@ sap.ui.define(
         const sPath = oContext.getPath();
         const oData = oContext.getObject();
 
+        console.log(sPath);
+        
+
         MessageBox.confirm(
           `Are you sure you want to delete student "${oData.Name}"?`,
           {
@@ -102,8 +105,6 @@ sap.ui.define(
         if (oData.Gender) oData.Gender = oData.Gender.toUpperCase();
         if (oData.Degree) oData.Degree = oData.Degree.toUpperCase();
         if (oData.Console) oData.Console = oData.Console.toUpperCase();
-
-        console.log(oData.Name);
 
         const oModel = oView.getModel();
         const that = this;

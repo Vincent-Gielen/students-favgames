@@ -15,7 +15,7 @@
 
         <content>
             <!-- Student Details Section -->
-            <Panel headerText="{i18n>studentDetail.panelTitle}" expandable="true" expanded="true">
+            <Panel headerText="{i18n>studentDetail.panelTitle}" expandable="true" expanded="false">
                 <form:SimpleForm
                     layout="ResponsiveGridLayout"
                     labelSpanL="4"
@@ -23,20 +23,21 @@
                     editable="false">
 
                     <form:content>
-                        <Label text="{i18n>studentDetail.labelStudentId}" />
-                        <ObjectStatus text="{Studentid}" />
+                        <!-- <Label text="{i18n>studentDetail.labelStudentId}" labelFor="studentid"
+                        />
+                        <Text id="studentid" text="{Studentid}" /> -->
 
-                        <Label text="{i18n>studentDetail.labelName}" />
-                        <ObjectStatus text="{Name}" />
+                        <Label text="{i18n>studentDetail.labelName}" labelFor="name" />
+                        <Text id="name" text="{Name}" />
 
-                        <Label text="{i18n>studentDetail.labelGender}" />
-                        <ObjectStatus text="{Gender}" />
+                        <Label text="{i18n>studentDetail.labelGender}" labelFor="gender" />
+                        <Text id="gender" text="{Gender}" />
 
-                        <Label text="{i18n>studentDetail.labelDegree}" />
-                        <ObjectStatus text="{Degree}" />
+                        <Label text="{i18n>studentDetail.labelDegree}" labelFor="degree" />
+                        <Text id="degree" text="{Degree}" />
 
-                        <Label text="{i18n>studentDetail.labelConsole}" />
-                        <ObjectStatus text="{Console}" />
+                        <Label text="{i18n>studentDetail.labelConsole}" labelFor="console" />
+                        <Text id="console" text="{Console}" />
                     </form:content>
                 </form:SimpleForm>
             </Panel>
@@ -51,18 +52,18 @@
                 <Table
                     id="gamesList"
                     items="{path: 'cds>/ZAS_113_C_GAMES', model: 'cds'}"
-                    width="100%"
+                    width="auto"
                     inset="false"
                     class="sapUiResponsiveMargin"
                     noDataText="{i18n>gamesTable.noDataText}"
                     growing="true"
-                    growingThreshold="100">
+                    growingThreshold="10">
 
                     <headerToolbar>
                         <Toolbar>
                             <Title text="{i18n>studentDetail.favouriteGamesTitle}" level="H6" />
                             <ToolbarSpacer />
-                            <Label text="Games Search"
+                            <Label text="{i18n>gamesTable.filterLabel}"
                                 labelFor="multiInput" />
                             <MultiInput
                                 id="multiInput"
@@ -87,18 +88,18 @@
                                     </ColumnListItem>
                                 </suggestionRows>
                             </MultiInput>
+                            <Button text="{i18n>gamesTable.actions.addGame}"
+                                type="Emphasized"
+                                press="onPressAddGame" />
                         </Toolbar>
                     </headerToolbar>
 
                     <columns>
-                        <Column>
+                        <!-- <Column>
                             <Text text="{i18n>gamesTable.columnGameId}" />
-                        </Column>
+                        </Column> -->
                         <Column>
                             <Text text="{i18n>gamesTable.columnName}" />
-                        </Column>
-                        <Column>
-                            <Text text="{i18n>gamesTable.columnPlatform}" />
                         </Column>
                         <Column>
                             <Text text="{i18n>gamesTable.columnGenre}" />
@@ -107,11 +108,14 @@
                             <Text text="{i18n>gamesTable.columnPublisher}" />
                         </Column>
                         <Column>
+                            <Text text="{i18n>gamesTable.columnPlatform}" />
+                        </Column>
+                        <!-- <Column>
                             <Text text="{i18n>gamesTable.columnReleaseDate}" />
-                        </Column>
-                        <Column>
+                        </Column> -->
+                        <!-- <Column>
                             <Text text="{i18n>gamesTable.columnCover}" />
-                        </Column>
+                        </Column> -->
                         <Column>
                             <Text text="{i18n>gamesTable.columnActions}" />
                         </Column>
@@ -119,31 +123,36 @@
                     <items>
                         <ColumnListItem>
                             <cells>
-                                <Text text="{cds>GameID}" />
+                                <!-- <Text text="{cds>GameID}" /> -->
                                 <Text text="{cds>Name}" />
                                 <Text text="{cds>Genre}" />
                                 <Text text="{cds>Publisher}" />
                                 <Text text="{cds>Platform}" />
-                                <Text
+                                <!-- <Text
                                     text="{
                                                 path: 'cds>ReleaseDate',
                                                 type: 'sap.ui.model.type.Date',
                                                 formatOptions: { pattern: 'dd-MM-yyyy' }
-                                            }" />
-                                <Link text="{i18n>gamesTable.cover.linkText}"
-                                    href="{cds>CoverUrl}" target="_blank" />
-                                <Button
-                                    icon="sap-icon://navigation-right-arrow"
-                                    tooltip="Open Game"
-                                    type="Transparent"
-                                    press="onOpenGamePress"
-                                />
+                                            }" /> -->
+                                <!-- <Link text="{i18n>gamesTable.cover.linkText}"
+                                    href="{cds>CoverUrl}" target="_blank" /> -->
+                                <HBox class="sapUiSmallMarginEnd">
+                                    <Button
+                                        icon="sap-icon://information"
+                                        tooltip="Click for game details"
+                                        type="Transparent"
+                                        press="handleDetailPress"
+                                    />
+                                    <Button icon="sap-icon://delete"
+                                        type="Transparent"
+                                        tooltip="{i18n>studentsTable.button.delete.tooltip}"
+                                        press="onPressRemoveGame" />
+                                </HBox>
                             </cells>
                         </ColumnListItem>
                     </items>
                 </Table>
             </Panel>
-
         </content>
     </Page>
 </mvc:View>

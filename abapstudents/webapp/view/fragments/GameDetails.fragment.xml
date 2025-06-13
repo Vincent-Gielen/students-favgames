@@ -1,0 +1,33 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+>
+	<Popover
+		id="myPopover"
+		title="{cds>GameID}. {cds>Name}"
+		titleAlignment="Center"
+		placement="Auto"
+	>
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<Text text="Genre: {cds>Genre}" />
+				<Text text="Platform: {cds>Platform}" />
+				<Text text="Publisher: {cds>Publisher}" />
+				<Text
+					text="Release Date: {
+						path: 'cds>ReleaseDate',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: { pattern: 'dd-MM-yyyy' }
+					}"
+				/>
+				<Image
+					src="{cds>CoverUrl}"
+					width="150px"
+					densityAware="false"
+					alt="Game Cover"
+				/>
+				<Text text="Description: {cds>Description}" />
+			</VBox>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

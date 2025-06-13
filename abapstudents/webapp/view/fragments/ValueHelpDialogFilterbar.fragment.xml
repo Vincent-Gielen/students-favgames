@@ -10,12 +10,12 @@
     afterClose=".onValueHelpAfterClose"
     supportRanges="true"
     key="GameID"
-    descriptionKey="GameName">
+    descriptionKey="Name">
     <filterBar>
       <fb:FilterBar advancedMode="true" search=".onFilterBarSearch"
         isRunningInValueHelpDialog="true">
         <fb:filterGroupItems>
-          <fb:FilterGroupItem
+          <!-- <fb:FilterGroupItem
             groupName="__$INTERNAL$"
             name="GameID"
             label="Game ID"
@@ -23,14 +23,14 @@
             <fb:control>
               <m:Input name="GameID" />
             </fb:control>
-          </fb:FilterGroupItem>
+          </fb:FilterGroupItem> -->
           <fb:FilterGroupItem
             groupName="__$INTERNAL$"
-            name="GameName"
+            name="Name"
             label="Game Name"
             visibleInFilterBar="true">
             <fb:control>
-              <m:Input name="GameName" />
+              <m:Input name="Name" />
             </fb:control>
           </fb:FilterGroupItem>
         </fb:filterGroupItems>

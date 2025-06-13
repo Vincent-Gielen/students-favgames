@@ -87,7 +87,7 @@
                                         liveChange="onFilterChange"
                                         width="10rem" />
 
-                                    <Label text="Console" />
+                                    <Label text="Platform" />
                                     <Select id="filterConsole" change="onFilterChange"
                                         width="10rem">
                                         <items>
