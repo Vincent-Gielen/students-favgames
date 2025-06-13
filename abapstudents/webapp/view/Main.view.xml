@@ -95,7 +95,7 @@
                                             <core:Item key="PC" text="PC" />
                                             <core:Item key="XBOX" text="Xbox" />
                                             <core:Item key="PLAYSTATION"
-                                                text="PlayStation (PS)" />
+                                                text="PlayStation" />
                                             <core:Item key="NINTENDO" text="Nintendo" />
                                             <core:Item key="WII" text="Wii" />
                                         </items>
@@ -165,7 +165,55 @@
                             width="auto">
                             <headerToolbar>
                                 <Toolbar>
-                                    <Label text="{i18n>gamesTable.title}" />
+                                    <Label text="Title" />
+                                    <SearchField id="filterTitle"
+                                        liveChange="onGamesFilterChange"
+                                        width="10rem" />
+
+                                    <Label text="Genre" />
+                                    <Select id="filterGenre" change="onGamesFilterChange"
+                                        width="8rem">
+                                        <items>
+                                            <core:Item key="" text="All" />
+                                            <core:Item key="Action" text="Action" />
+                                            <core:Item key="Adventure" text="Adventure" />
+                                            <core:Item key="Card &amp; Board Game" text="Card &amp; Board Game" />
+                                            <core:Item key="Fighting" text="Fighting" />
+                                            <core:Item key="Hack and slash/Beat 'em up" text="Hack and slash/Beat 'em up" />
+                                            <core:Item key="Music" text="Music" />
+                                            <core:Item key="Platform" text="Platform" />
+                                            <core:Item key="Point-and-click" text="Point-and-click" />
+                                            <core:Item key="Puzzle" text="Puzzle" />
+                                            <core:Item key="Quiz/Trivia" text="Quiz/Trivia" />
+                                            <core:Item key="Racing" text="Racing" />
+                                            <core:Item key="Real Time Strategy (RTS)" text="Real Time Strategy (RTS)" />
+                                            <core:Item key="Role-playing (RPG)" text="Role-playing (RPG)" />
+                                            <core:Item key="Shooter" text="Shooter" />
+                                            <core:Item key="Simulator" text="Simulator" />
+                                            <core:Item key="Strategy" text="Strategy" />
+                                        </items>
+                                    </Select>
+                                    <Label text="Publisher" />
+                                    <SearchField id="filterPublisher"
+                                        liveChange="onGamesFilterChange"
+                                        width="10rem" />
+                                    <Label text="Platform" />
+                                    <Select id="filterPlatform" change="onGamesFilterChange"
+                                        width="8rem">
+                                        <items>
+                                            <core:Item key="" text="All" />
+                                            <core:Item key="PC" text="PC" />
+                                            <core:Item key="DOS" text="DOS" />
+                                            <core:Item key="WII" text="Wii" />
+                                            <core:Item key="NINTENDO" text="Nintendo" />
+                                            <core:Item key="PLAYSTATION" text="PlayStation" />
+                                            <core:Item key="COMMODORE" text="Commodore" />
+                                            <core:Item key="IOS" text="iOS" />
+                                            <core:Item key="ANDROID" text="Android" />
+                                            <core:Item key="GAME BOY" text="Game Boy" />
+                                            <core:Item key="XBOX" text="Xbox" />
+                                        </items>
+                                    </Select>
                                 </Toolbar>
                             </headerToolbar>
                             <columns>
@@ -210,7 +258,8 @@
                                             }" />
                                         <Link text="{i18n>gamesTable.cover.linkText}"
                                             href="{cds>CoverUrl}" target="_blank" />
-                                        <TextArea editable="false" value="{cds>Description}" rows="6"
+                                        <TextArea editable="false" value="{cds>Description}"
+                                            rows="6"
                                             width="100%" />
                                     </cells>
                                 </ColumnListItem>

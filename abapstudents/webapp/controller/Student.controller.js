@@ -1,42 +1,28 @@
 sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History",
-    "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/ui/comp/library",
-    "sap/ui/model/type/String",
     "sap/m/ColumnListItem",
     "sap/m/Label",
     "sap/m/SearchField",
-    "sap/m/Token",
-    "sap/ui/model/odata/v2/ODataModel",
     "sap/ui/table/Column",
     "sap/m/Column",
     "sap/m/Text",
     "sap/ui/core/Fragment",
-    "sap/m/MessageToast",
     "sap/m/MessageBox",
   ],
   function (
     Controller,
-    History,
-    JSONModel,
     Filter,
     FilterOperator,
-    CompLibrary,
-    TypeString,
     ColumnListItem,
     Label,
     SearchField,
-    Token,
-    ODataModel,
     UIColumn,
     MColumn,
     Text,
     Fragment,
-    MessageToast,
     MessageBox
   ) {
     "use strict";
@@ -314,7 +300,7 @@ sap.ui.define(
         oModel.setUseBatch(false);
 
         if (aTokens.length === 0) {
-          MessageToast.show("Please select at least one game to add.");
+          MessageBox.show("Please select at least one game to add.");
           return;
         }
 
@@ -351,7 +337,7 @@ sap.ui.define(
 
         // Nadat alle games zijn toegevoegd, toon bericht en filter opnieuw de games tabel
         Promise.all(createPromises).then(() => {
-          MessageToast.show("Games added successfully!");
+          MessageBox.show("Games added successfully!");
           this._filtergames();
           oMultiInput.removeAllTokens();
         });
@@ -408,8 +394,8 @@ sap.ui.define(
               if (sAction === MessageBox.Action.OK) {
                 oModel.remove(sPath, {
                   success: function () {
-                    MessageToast.show(
-                      "Game removed from favourites successfully."
+                    MessageBox.show(
+                      `${sGameName} removed from favourites successfully.`
                     );
                     that._filtergames();
                   },

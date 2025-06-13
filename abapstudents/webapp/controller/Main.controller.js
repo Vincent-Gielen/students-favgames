@@ -5,7 +5,6 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/m/MessageToast",
     "sap/m/MessageBox",
   ],
   function (
@@ -14,7 +13,6 @@ sap.ui.define(
     JSONModel,
     Filter,
     FilterOperator,
-    MessageToast,
     MessageBox
   ) {
     "use strict";
@@ -64,7 +62,6 @@ sap.ui.define(
         const oData = oContext.getObject();
 
         console.log(sPath);
-        
 
         MessageBox.confirm(
           `Are you sure you want to delete student "${oData.Name}"?`,
@@ -74,7 +71,7 @@ sap.ui.define(
               if (sAction === MessageBox.Action.OK) {
                 oModel.remove(sPath, {
                   success: function () {
-                    MessageToast.show("Student deleted successfully.");
+                    MessageBox.show("Student deleted successfully.");
                     oView.byId("studentsTable").getBinding("items").refresh();
                   },
                   error: function () {
@@ -90,7 +87,7 @@ sap.ui.define(
       onPressStudent: function (oEvent) {
         const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         const oContext = oEvent.getSource().getBindingContext();
-        const sStudentId = oContext.getProperty("Studentid");        
+        const sStudentId = oContext.getProperty("Studentid");
         oRouter.navTo("RouteStudent", { Studentid: sStudentId });
       },
 
@@ -120,7 +117,7 @@ sap.ui.define(
           const sPath = "/StudentSet('" + oData.Studentid + "')";
           oModel.update(sPath, oData, {
             success: function () {
-              MessageToast.show("Student updated successfully!");
+              MessageBox.show("Student updated successfully!");
               that._studentDialog.close();
               oView.byId("studentsTable").getBinding("items").refresh();
             },
@@ -131,7 +128,7 @@ sap.ui.define(
         } else {
           oModel.create("/StudentSet", oData, {
             success: function () {
-              MessageToast.show("Student added successfully!");
+              MessageBox.show("Student added successfully!");
               that._studentDialog.close();
               oView.byId("studentsTable").getBinding("items").refresh();
             },
@@ -181,7 +178,6 @@ sap.ui.define(
         }
         if (sConsole)
           aFilters.push(new Filter("Console", FilterOperator.EQ, sConsole));
-        
 
         const oTable = oView.byId("studentsTable");
         const oBinding = oTable.getBinding("items");
@@ -199,6 +195,56 @@ sap.ui.define(
             resolve(oDialog);
           });
         });
+      },
+
+      onGamesFilterChange: function () {
+        const oView = this.getView();
+        const sTitel = oView.byId("filterTitle").getValue().trim();
+        const sGenre = oView.byId("filterGenre").getSelectedKey();
+        const sPlatform = oView.byId("filterPlatform").getSelectedKey();
+        const sPublisher = oView.byId("filterPublisher").getValue().trim();
+
+        console.log(sTitel, sGenre);
+
+        const aFilters = [];
+        if (sTitel) {
+          aFilters.push(new Filter("Name", FilterOperator.Contains, sTitel));
+          aFilters.push(
+            new Filter("Name", FilterOperator.Contains, sTitel.toLowerCase())
+          );
+          aFilters.push(
+            new Filter("Name", FilterOperator.Contains, sTitel.toUpperCase())
+          );
+        }
+        if (sGenre)
+          aFilters.push(new Filter("Genre", FilterOperator.EQ, sGenre));
+        if (sPublisher) {
+          aFilters.push(
+            new Filter("Publisher", FilterOperator.Contains, sPublisher)
+          );
+          aFilters.push(
+            new Filter(
+              "Publisher",
+              FilterOperator.Contains,
+              sPublisher.toLowerCase()
+            )
+          );
+          aFilters.push(
+            new Filter(
+              "Publisher",
+              FilterOperator.Contains,
+              sPublisher.toUpperCase()
+            )
+          );
+        }
+        if (sPlatform)
+          aFilters.push(
+            new Filter("Platform", FilterOperator.Contains, sPlatform)
+          );
+
+        const oTable = oView.byId("gamesTable");
+        const oBinding = oTable.getBinding("items");
+        oBinding.filter(aFilters);
       },
     });
   }
