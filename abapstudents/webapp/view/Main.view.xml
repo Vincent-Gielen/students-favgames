@@ -69,11 +69,11 @@
                                     <Label text="Name" />
                                     <SearchField id="filterName"
                                         liveChange="onFilterChange"
-                                        width="10rem" />
+                                        width="12rem" />
 
                                     <Label text="Gender" />
                                     <Select id="filterGender" change="onFilterChange"
-                                        width="8rem">
+                                        width="7rem">
                                         <items>
                                             <core:Item key="" text="All" />
                                             <core:Item key="M" text="Male" />
@@ -89,10 +89,11 @@
 
                                     <Label text="Platform" />
                                     <Select id="filterConsole" change="onFilterChange"
-                                        width="10rem">
+                                        width="8rem">
                                         <items>
                                             <core:Item key="" text="All" />
                                             <core:Item key="PC" text="PC" />
+                                            <core:Item key="PHONE" text="Phone" />
                                             <core:Item key="XBOX" text="Xbox" />
                                             <core:Item key="PLAYSTATION"
                                                 text="PlayStation" />
@@ -100,7 +101,16 @@
                                             <core:Item key="WII" text="Wii" />
                                         </items>
                                     </Select>
-
+                                     <Button
+                                        icon="sap-icon://hint"
+                                        type="Transparent"
+                                        tooltip="{i18n>dynamicPage.actions.studentFilterTooltip}"
+                                        press="onPressStudentFilter" />
+                                    <Button
+                                        icon="sap-icon://clear-filter"
+                                        tooltip="{i18n>dynamicPage.actions.clearFilters}"
+                                        type="Transparent"
+                                        press="onPressClearStudentFilters" />
                                     <ToolbarSpacer />
                                     <Button text="{i18n>dynamicPage.actions.add}"
                                         type="Emphasized"
@@ -173,7 +183,8 @@
                                     <Label text="Genre" />
                                     <Select id="filterGenre" change="onGamesFilterChange"
                                         width="8rem">
-                                        <items>
+                                        <!-- dit doen we nu dynamisch in de controller -->
+                                        <!-- <items>
                                             <core:Item key="" text="All" />
                                             <core:Item key="Action" text="Action" />
                                             <core:Item key="Adventure" text="Adventure" />
@@ -191,7 +202,7 @@
                                             <core:Item key="Shooter" text="Shooter" />
                                             <core:Item key="Simulator" text="Simulator" />
                                             <core:Item key="Strategy" text="Strategy" />
-                                        </items>
+                                        </items> -->
                                     </Select>
                                     <Label text="Publisher" />
                                     <SearchField id="filterPublisher"
@@ -200,7 +211,8 @@
                                     <Label text="Platform" />
                                     <Select id="filterPlatform" change="onGamesFilterChange"
                                         width="8rem">
-                                        <items>
+                                        <!-- dit doen we nu dynamisch in de controller -->
+                                        <!-- <items>
                                             <core:Item key="" text="All" />
                                             <core:Item key="PC" text="PC" />
                                             <core:Item key="DOS" text="DOS" />
@@ -212,7 +224,7 @@
                                             <core:Item key="ANDROID" text="Android" />
                                             <core:Item key="GAME BOY" text="Game Boy" />
                                             <core:Item key="XBOX" text="Xbox" />
-                                        </items>
+                                        </items> -->
                                     </Select>
                                 </Toolbar>
                             </headerToolbar>

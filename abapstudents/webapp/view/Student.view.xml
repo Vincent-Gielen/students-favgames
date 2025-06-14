@@ -139,7 +139,7 @@
                                 <HBox class="sapUiSmallMarginEnd">
                                     <Button
                                         icon="sap-icon://information"
-                                        tooltip="Click for game details"
+                                        tooltip="{i18n>gamesTable.button.details.tooltip}"
                                         type="Transparent"
                                         press="handleDetailPress"
                                     />

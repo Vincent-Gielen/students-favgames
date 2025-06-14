@@ -23,6 +23,8 @@ sap.ui.define(
         this._validationModel = new JSONModel();
         this.getView().setModel(this._inputModel, "input");
         this.getView().setModel(this._validationModel, "validation");
+        this._loadDropdownValues("filterGenre", "Genre");
+        this._loadDropdownValues("filterPlatform", "Platform");
       },
 
       onPressCreateNewStudent: function () {
@@ -117,7 +119,7 @@ sap.ui.define(
           const sPath = "/StudentSet('" + oData.Studentid + "')";
           oModel.update(sPath, oData, {
             success: function () {
-              MessageBox.show("Student updated successfully!");
+              MessageBox.show(`${oData.Name} was updated successfully!`);
               that._studentDialog.close();
               oView.byId("studentsTable").getBinding("items").refresh();
             },
@@ -128,7 +130,7 @@ sap.ui.define(
         } else {
           oModel.create("/StudentSet", oData, {
             success: function () {
-              MessageBox.show("Student added successfully!");
+              MessageBox.show(`${oData.Name} was added successfully!`);
               that._studentDialog.close();
               oView.byId("studentsTable").getBinding("items").refresh();
             },
@@ -184,6 +186,45 @@ sap.ui.define(
         oBinding.filter(aFilters);
       },
 
+      onPressClearStudentFilters: function () {
+        const oView = this.getView();
+
+        // 1. Clear input fields
+        const aFilterInputs = [
+          oView.byId("filterName"),
+          oView.byId("filterDegree"),
+          oView.byId("filterGender"),
+          oView.byId("filterConsole"),
+        ];
+
+        // het is of een select (met key) of een input (met value)
+        aFilterInputs.forEach((oControl) => {
+          if (oControl.setSelectedKey) {
+            oControl.setSelectedKey("");
+          } else if (oControl.setValue) {
+            oControl.setValue("");
+          }
+        });
+
+        // 2. Clear table filters
+        const oTable = oView.byId("studentsTable");
+        if (oTable) {
+          const oBinding = oTable.getBinding("items");
+          if (oBinding) {
+            oBinding.filter([]); // Remove all filters
+          }
+        }
+      },
+
+      onPressStudentFilter: function () {
+        MessageBox.information(
+          "All filters are updated dynamically as you type or select."
+          + "\n\nName and Degree must be written in full to match a Name or Degree."
+          + "\n\nName and Degree filters are case-insensitive."
+          + "\n\nTo clear filters, use the 'Clear' button."
+        );
+      },
+
       _loadDialog: function (sFragmentName) {
         return new Promise((resolve, reject) => {
           Fragment.load({
@@ -207,6 +248,8 @@ sap.ui.define(
         console.log(sTitel, sGenre);
 
         const aFilters = [];
+        // we voegen het toe in alle cases, zodat we zeker een match hebben
+        // ignore case bestaat niet, maar contains gaat hier wel, want odatav4?
         if (sTitel) {
           aFilters.push(new Filter("Name", FilterOperator.Contains, sTitel));
           aFilters.push(
@@ -238,13 +281,42 @@ sap.ui.define(
           );
         }
         if (sPlatform)
-          aFilters.push(
-            new Filter("Platform", FilterOperator.Contains, sPlatform)
-          );
+          aFilters.push(new Filter("Platform", FilterOperator.EQ, sPlatform));
 
         const oTable = oView.byId("gamesTable");
         const oBinding = oTable.getBinding("items");
         oBinding.filter(aFilters);
+      },
+
+      // deze wordt gebruikt om de dropdowns te vullen, herbruikbare code
+      _loadDropdownValues: function (sSelectId, sField) {
+        const oSelect = this.byId(sSelectId);
+        const oModel = this.getView().getModel("cds");
+
+        // dit moet, anders is model nog niet geladen
+        if (!oModel) {
+          console.warn(`OData model not ready yet for ${sField}. Retrying...`);
+          setTimeout(() => this._loadDropdownValues(sSelectId, sField), 200);
+          return;
+        }
+
+        oModel.read("/ZAS_113_C_GAMES", {
+          success: function (oData) {
+            const aValues = [
+              ...new Set(oData.results.map((g) => g[sField]).filter(Boolean)),
+            ].sort();
+
+            oSelect.destroyItems();
+            oSelect.addItem(new sap.ui.core.Item({ key: "", text: "All" }));
+
+            aValues.forEach(function (val) {
+              oSelect.addItem(new sap.ui.core.Item({ key: val, text: val }));
+            });
+          },
+          error: function (oError) {
+            console.error(`Failed to load distinct ${sField} values`, oError);
+          },
+        });
       },
     });
   }

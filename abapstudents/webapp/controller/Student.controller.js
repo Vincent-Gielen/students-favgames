@@ -69,14 +69,14 @@ sap.ui.define(
             if (oGamesList && gameIds.length > 0) {
               const aFilters = gameIds.map(
                 (id) =>
-                  new sap.ui.model.Filter(
+                  new Filter(
                     "GameID",
-                    sap.ui.model.FilterOperator.EQ,
+                    FilterOperator.EQ,
                     id
                   )
               );
               oGamesList.getBinding("items").filter(
-                new sap.ui.model.Filter({
+                new Filter({
                   filters: aFilters,
                   and: false,
                 })
@@ -86,9 +86,9 @@ sap.ui.define(
               oGamesList
                 .getBinding("items")
                 .filter(
-                  new sap.ui.model.Filter(
+                  new Filter(
                     "GameID",
-                    sap.ui.model.FilterOperator.EQ,
+                    FilterOperator.EQ,
                     0
                   )
                 );
@@ -179,31 +179,32 @@ sap.ui.define(
                   oTable.addColumn(oColumnName);
                 }
 
+                // Niet nodig den kik, aangezien ik niet op mobile werk
                 // For Mobile the default table is sap.m.Table
-                if (oTable.bindItems) {
-                  // Bind items to the ODataModel and add columns
-                  oTable.bindAggregation("items", {
-                    path: "/ZAS_113_C_GAMES",
-                    model: "cds",
-                    template: new ColumnListItem({
-                      cells: [
-                        new Label({ text: "{cds>GameID}" }),
-                        new Label({ text: "{cds>Name}" }),
-                      ],
-                    }),
-                    events: {
-                      dataReceived: function () {
-                        oDialog.update();
-                      },
-                    },
-                  });
-                  oTable.addColumn(
-                    new MColumn({ header: new Label({ text: "GameID" }) })
-                  );
-                  oTable.addColumn(
-                    new MColumn({ header: new Label({ text: "Game Name" }) })
-                  );
-                }
+                // if (oTable.bindItems) {
+                //   // Bind items to the ODataModel and add columns
+                //   oTable.bindAggregation("items", {
+                //     path: "/ZAS_113_C_GAMES",
+                //     model: "cds",
+                //     template: new ColumnListItem({
+                //       cells: [
+                //         new Label({ text: "{cds>GameID}" }),
+                //         new Label({ text: "{cds>Name}" }),
+                //       ],
+                //     }),
+                //     events: {
+                //       dataReceived: function () {
+                //         oDialog.update();
+                //       },
+                //     },
+                //   });
+                //   oTable.addColumn(
+                //     new MColumn({ header: new Label({ text: "GameID" }) })
+                //   );
+                //   oTable.addColumn(
+                //     new MColumn({ header: new Label({ text: "Game Name" }) })
+                //   );
+                // }
                 oDialog.update();
               }.bind(this)
             );

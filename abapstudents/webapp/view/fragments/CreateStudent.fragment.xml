@@ -38,6 +38,7 @@
             <items>
               <core:Item key="" text="Select Console" />
               <core:Item key="PC" text="PC" />
+              <core:Item key="PHONE" text="Phone" />
               <core:Item key="XBOX" text="Xbox" />
               <core:Item key="PLAYSTATION" text="PlayStation" />
               <core:Item key="NINTENDO" text="Nintendo" />
