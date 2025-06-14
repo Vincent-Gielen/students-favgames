@@ -51,22 +51,22 @@
 
                 <Table
                     id="gamesList"
-                    items="{path: 'cds>/ZAS_113_C_GAMES', model: 'cds'}"
+                    items="{path: 'cds>/ZAS_113_C_GAMES', model: 'cds', sorter: { path: 'Name' }}"
                     width="auto"
                     inset="false"
                     class="sapUiResponsiveMargin"
-                    noDataText="{i18n>gamesTable.noDataText}"
+                    noDataText="{i18n>favgamesTable.noDataText}"
                     growing="true"
                     growingThreshold="10">
 
                     <headerToolbar>
                         <Toolbar>
-                            <Label text="{i18n>gamesTable.filterLabel}"
+                            <Label text="{i18n>favgamesTable.filterLabel}"
                                 labelFor="multiInput" />
                             <MultiInput
                                 id="multiInput"
                                 width="60%"
-                                placeholder="{i18n>gamesTable.filterPlaceholder}"
+                                placeholder="{i18n>favgamesTable.filterPlaceholder}"
                                 valueHelpRequest=".onValueHelpRequested"
                                 suggestionItemSelected=".onSuggestionItemSelected"
                                 suggestionRows="{
@@ -92,7 +92,7 @@
                                     </ColumnListItem>
                                 </suggestionRows>
                             </MultiInput>
-                            <Button text="{i18n>gamesTable.actions.addGame}"
+                            <Button text="{i18n>favgamesTable.actions.addGame}"
                                 type="Emphasized"
                                 press="onPressAddGame" />
                         </Toolbar>
@@ -100,28 +100,28 @@
 
                     <columns>
                         <!-- <Column>
-                            <Text text="{i18n>gamesTable.columnGameId}" />
+                            <Text text="{i18n>favgamesTable.columnGameId}" />
                         </Column> -->
                         <Column>
-                            <Text text="{i18n>gamesTable.columnName}" />
+                            <Text text="{i18n>favgamesTable.columnName}" />
                         </Column>
                         <Column>
-                            <Text text="{i18n>gamesTable.columnGenre}" />
+                            <Text text="{i18n>favgamesTable.columnGenre}" />
                         </Column>
                         <Column>
-                            <Text text="{i18n>gamesTable.columnPublisher}" />
+                            <Text text="{i18n>favgamesTable.columnPublisher}" />
                         </Column>
                         <Column>
-                            <Text text="{i18n>gamesTable.columnPlatform}" />
+                            <Text text="{i18n>favgamesTable.columnPlatform}" />
                         </Column>
                         <!-- <Column>
-                            <Text text="{i18n>gamesTable.columnReleaseDate}" />
+                            <Text text="{i18n>favgamesTable.columnReleaseDate}" />
                         </Column> -->
                         <!-- <Column>
-                            <Text text="{i18n>gamesTable.columnCover}" />
+                            <Text text="{i18n>favgamesTable.columnCover}" />
                         </Column> -->
                         <Column>
-                            <Text text="{i18n>gamesTable.columnActions}" />
+                            <Text text="{i18n>favgamesTable.columnActions}" />
                         </Column>
                     </columns>
                     <items>
@@ -138,7 +138,7 @@
                                                 type: 'sap.ui.model.type.Date',
                                                 formatOptions: { pattern: 'dd-MM-yyyy' }
                                             }" /> -->
-                                <!-- <Link text="{i18n>gamesTable.cover.linkText}"
+                                <!-- <Link text="{i18n>favgamesTable.cover.linkText}"
                                     href="{cds>CoverUrl}" target="_blank" /> -->
                                 <HBox class="sapUiSmallMarginEnd">
                                     <Button

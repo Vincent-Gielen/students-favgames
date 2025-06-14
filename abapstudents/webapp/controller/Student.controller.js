@@ -397,9 +397,16 @@ sap.ui.define(
         if (oSelectedItem) {
           const oContext = oSelectedItem.getBindingContext("cds");
           const oGame = oContext.getObject();
+
+          console.log("Selected game:", oGame);
+          console.log("Game ID:", oGame.GameID);
+          console.log("Game Name:", oGame.Name);
           
+          
+          
+
           const oToken = new sap.m.Token({
-            key: oGame.ID, 
+            key: oGame.GameID, 
             text: oGame.Name,
           });
 
