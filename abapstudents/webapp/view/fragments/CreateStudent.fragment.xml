@@ -18,7 +18,12 @@
           <core:Title text="{i18n>dialog.student.section.general}" />
 
           <Label text="{i18n>dialog.student.field.name}" required="true" />
-          <Input value="{input>/Name}" />
+          <Input
+          id="nameInput"
+            value="{input>/Name}"
+            valueState="{= ${validation>/Name} === false ? 'Error' : 'None' }"
+            valueStateText="Name is required." 
+            placeholder="Type a Name"/>
 
           <Label text="{i18n>dialog.student.field.gender}" />
           <Select selectedKey="{input>/Gender}">
@@ -31,7 +36,7 @@
           </Select>
 
           <Label text="{i18n>dialog.student.field.degree}" />
-          <Input value="{input>/Degree}" />
+          <Input value="{input>/Degree}" placeholder="Type a Degree"/>
 
           <Label text="{i18n>dialog.student.field.console}" />
           <Select selectedKey="{input>/Console}">

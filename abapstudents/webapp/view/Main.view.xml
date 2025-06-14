@@ -63,7 +63,8 @@
                             inset="false"
                             sticky="HeaderToolbar,ColumnHeaders"
                             class="sapUiSmallNegativeMarginBeginEnd"
-                            width="auto">
+                            width="auto"
+                            noDataText="{i18n>studentsTable.noDataText}">
                             <headerToolbar>
                                 <Toolbar>
                                     <Label text="Name" />
@@ -101,7 +102,7 @@
                                             <core:Item key="WII" text="Wii" />
                                         </items>
                                     </Select>
-                                     <Button
+                                    <Button
                                         icon="sap-icon://hint"
                                         type="Transparent"
                                         tooltip="{i18n>dynamicPage.actions.studentFilterTooltip}"
@@ -117,7 +118,7 @@
                                         press="onPressCreateNewStudent" />
                                 </Toolbar>
                             </headerToolbar>
-
+                            
                             <columns>
                                 <!-- <Column width="10%">
                                     <Text text="{i18n>studentsTable.column.id}" />
@@ -160,6 +161,7 @@
                                 </ColumnListItem>
                             </items>
                         </Table>
+                        
                     </IconTabFilter>
 
                     <!-- Games Tab -->
@@ -241,16 +243,16 @@
                                 <Column>
                                     <Text text="{i18n>gamesTable.column.publisher}" />
                                 </Column>
-                                <Column width="8%">
+                                <Column>
                                     <Text text="{i18n>gamesTable.column.platform}" />
                                 </Column>
-                                <Column width="8%">
+                                <Column>
                                     <Text text="{i18n>gamesTable.column.releaseDate}" />
                                 </Column>
-                                <Column width="8%">
+                                <Column width="170px">
                                     <Text text="{i18n>gamesTable.column.coverPhoto}" />
                                 </Column>
-                                <Column width="40%">
+                                <Column>
                                     <Text text="{i18n>gamesTable.column.description}" />
                                 </Column>
                             </columns>
@@ -268,11 +270,21 @@
                                                 type: 'sap.ui.model.type.Date',
                                                 formatOptions: { pattern: 'dd-MM-yyyy' }
                                             }" />
-                                        <Link text="{i18n>gamesTable.cover.linkText}"
-                                            href="{cds>CoverUrl}" target="_blank" />
-                                        <TextArea editable="false" value="{cds>Description}"
+                                        <Image
+                                            src="{cds>CoverUrl}"
+                                            width="150px"
+                                            densityAware="false"
+                                            alt="Game Cover"
+                                        />
+                                        <!-- <TextArea editable="false" value="{cds>Description}"
                                             rows="6"
-                                            width="100%" />
+                                            width="100%" /> -->
+                                        <Button
+                                            icon="sap-icon://information"
+                                            tooltip="{i18n>gamesTable.button.details.tooltip}"
+                                            type="Transparent"
+                                            press="handleDetailPress"
+                                        />
                                     </cells>
                                 </ColumnListItem>
                             </items>

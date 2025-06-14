@@ -68,12 +68,7 @@ sap.ui.define(
 
             if (oGamesList && gameIds.length > 0) {
               const aFilters = gameIds.map(
-                (id) =>
-                  new Filter(
-                    "GameID",
-                    FilterOperator.EQ,
-                    id
-                  )
+                (id) => new Filter("GameID", FilterOperator.EQ, id)
               );
               oGamesList.getBinding("items").filter(
                 new Filter({
@@ -85,13 +80,7 @@ sap.ui.define(
               // Als er geen favoriete games zijn, tonen we de default game 0
               oGamesList
                 .getBinding("items")
-                .filter(
-                  new Filter(
-                    "GameID",
-                    FilterOperator.EQ,
-                    0
-                  )
-                );
+                .filter(new Filter("GameID", FilterOperator.EQ, 0));
             }
           },
           error: (oError) => {
@@ -108,8 +97,10 @@ sap.ui.define(
         }).then(
           function (oDialog) {
             var oFilterBar = oDialog.getFilterBar(),
-              oColumnGameID,
-              oColumnName;
+              //oColumnGameID,
+              oColumnName,
+              oColumnGenre,
+              oColumnPlatform;
             this._oVHD = oDialog;
 
             this.getView().addDependent(oDialog);
@@ -155,31 +146,53 @@ sap.ui.define(
                       },
                     },
                   });
-                  oColumnGameID = new UIColumn({
-                    label: new Label({ text: "Game ID" }),
-                    template: new Text({
-                      wrapping: false,
-                      text: "{cds>GameID}",
-                    }),
-                  });
-                  oColumnGameID.data({
-                    fieldName: "Game ID",
-                  });
+                  // oColumnGameID = new UIColumn({
+                  //   label: new Label({ text: "Game ID" }),
+                  //   template: new Text({
+                  //     wrapping: false,
+                  //     text: "{cds>GameID}",
+                  //   }),
+                  // });
+                  // oColumnGameID.data({
+                  //   fieldName: "Game ID",
+                  // });
                   oColumnName = new UIColumn({
-                    label: new Label({ text: "Game Name" }),
+                    label: new Label({ text: "Game Title" }),
                     template: new Text({
                       wrapping: false,
                       text: "{cds>Name}",
                     }),
                   });
                   oColumnName.data({
-                    fieldName: "Game Name",
+                    fieldName: "Game Title",
                   });
-                  oTable.addColumn(oColumnGameID);
+                  oColumnGenre = new UIColumn({
+                    label: new Label({ text: "Game Genre" }),
+                    template: new Text({
+                      wrapping: false,
+                      text: "{cds>Genre}",
+                    }),
+                  });
+                  oColumnGenre.data({
+                    fieldName: "Game Genre",
+                  });
+                  oColumnPlatform = new UIColumn({
+                    label: new Label({ text: "Game Platform" }),
+                    template: new Text({
+                      wrapping: false,
+                      text: "{cds>Platform}",
+                    }),
+                  });
+                  oColumnPlatform.data({
+                    fieldName: "Game Platform",
+                  });
+                  //oTable.addColumn(oColumnGameID);
                   oTable.addColumn(oColumnName);
+                  oTable.addColumn(oColumnGenre);
+                  oTable.addColumn(oColumnPlatform);
                 }
 
-                // Niet nodig den kik, aangezien ik niet op mobile werk
+                // Niet nodig denk ik, aangezien ik niet op mobile werk
                 // For Mobile the default table is sap.m.Table
                 // if (oTable.bindItems) {
                 //   // Bind items to the ODataModel and add columns
@@ -231,15 +244,12 @@ sap.ui.define(
         this._oVHD.destroy();
       },
 
+      // voor de filters in de value help dialog
       onFilterBarSearch: function (oEvent) {
         var sSearchQuery = this._oBasicSearchField.getValue(),
           aSelectionSet = oEvent.getParameter("selectionSet");
 
         var aFilters = aSelectionSet.reduce(function (aResult, oControl) {
-          //console.log("oControl.getName: ", oControl.getName());
-          //console.log("oControl.getValue: ", oControl.getValue());
-          // Dit is waarschijnlijk te complex voor de huidige implementatie
-          // Maar het werkt zo door de define conditions (zo hierboven) uit te zetten
           if (oControl.getValue()) {
             aResult.push(
               new Filter({
@@ -258,6 +268,16 @@ sap.ui.define(
             filters: [
               new Filter({
                 path: "Name",
+                operator: FilterOperator.Contains,
+                value1: sSearchQuery,
+              }),
+              new Filter({
+                path: "Genre",
+                operator: FilterOperator.Contains,
+                value1: sSearchQuery,
+              }),
+              new Filter({
+                path: "Platform",
                 operator: FilterOperator.Contains,
                 value1: sSearchQuery,
               }),
@@ -281,9 +301,9 @@ sap.ui.define(
           if (oTable.bindRows) {
             oTable.getBinding("rows").filter(oFilter);
           }
-          if (oTable.bindItems) {
-            oTable.getBinding("items").filter(oFilter);
-          }
+          // if (oTable.bindItems) {
+          //   oTable.getBinding("items").filter(oFilter);
+          // }
 
           // This method must be called after binding update of the table.
           oVHD.update();
@@ -368,6 +388,23 @@ sap.ui.define(
           });
           oPopover.openBy(oButton);
         });
+      },
+
+      onSuggestionItemSelected: function (oEvent) {
+        const oSelectedItem = oEvent.getParameter("selectedRow");
+        const oMultiInput = this.byId("multiInput");
+
+        if (oSelectedItem) {
+          const oContext = oSelectedItem.getBindingContext("cds");
+          const oGame = oContext.getObject();
+          
+          const oToken = new sap.m.Token({
+            key: oGame.ID, 
+            text: oGame.Name,
+          });
+
+          oMultiInput.addToken(oToken);
+        }
       },
 
       onPressRemoveGame: function (oEvent) {

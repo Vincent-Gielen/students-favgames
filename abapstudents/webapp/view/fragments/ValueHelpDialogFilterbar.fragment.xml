@@ -27,10 +27,28 @@
           <fb:FilterGroupItem
             groupName="__$INTERNAL$"
             name="Name"
-            label="Game Name"
+            label="Game Title"
             visibleInFilterBar="true">
             <fb:control>
               <m:Input name="Name" />
+            </fb:control>
+          </fb:FilterGroupItem>
+          <fb:FilterGroupItem
+            groupName="__$INTERNAL$"
+            name="Genre"
+            label="Game Genre"
+            visibleInFilterBar="true">
+            <fb:control>
+              <m:Input name="Genre" />
+            </fb:control>
+          </fb:FilterGroupItem>
+          <fb:FilterGroupItem
+            groupName="__$INTERNAL$"
+            name="Platform"
+            label="Game Platform"
+            visibleInFilterBar="true">
+            <fb:control>
+              <m:Input name="Platform" />
             </fb:control>
           </fb:FilterGroupItem>
         </fb:filterGroupItems>

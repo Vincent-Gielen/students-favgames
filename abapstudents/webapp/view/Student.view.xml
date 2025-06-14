@@ -61,17 +61,17 @@
 
                     <headerToolbar>
                         <Toolbar>
-                            <Title text="{i18n>studentDetail.favouriteGamesTitle}" level="H6" />
-                            <ToolbarSpacer />
                             <Label text="{i18n>gamesTable.filterLabel}"
                                 labelFor="multiInput" />
                             <MultiInput
                                 id="multiInput"
                                 width="60%"
+                                placeholder="{i18n>gamesTable.filterPlaceholder}"
                                 valueHelpRequest=".onValueHelpRequested"
+                                suggestionItemSelected=".onSuggestionItemSelected"
                                 suggestionRows="{
 				path: 'cds>/ZAS_113_C_GAMES',
-				length: 10
+				length: 600
 			}">
                                 <suggestionColumns>
                                     <Column>
@@ -80,11 +80,15 @@
                                     <Column>
                                         <Label text="Game Genre" />
                                     </Column>
+                                    <Column>
+                                        <Label text="Game Platform" />
+                                    </Column>
                                 </suggestionColumns>
                                 <suggestionRows>
                                     <ColumnListItem>
                                         <Label text="{cds>Name}" />
                                         <Label text="{cds>Genre}" />
+                                        <Label text="{cds>Platform}"/>
                                     </ColumnListItem>
                                 </suggestionRows>
                             </MultiInput>

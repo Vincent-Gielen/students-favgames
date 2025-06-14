@@ -98,6 +98,13 @@ sap.ui.define(
         const oData = Object.assign({}, this._inputModel.getData());
 
         console.log(oData);
+        // Validate required fields
+        if (!oData.Name) {
+          this._validationModel.setProperty("/Name", false);
+          this.getView().byId("nameInput").setPlaceholder("Name is required.");
+        } else {
+          this._validationModel.setProperty("/Name", true);
+        }
 
         // Convert all input fields to uppercase before saving
         if (oData.Name) oData.Name = oData.Name.toUpperCase();
@@ -218,10 +225,10 @@ sap.ui.define(
 
       onPressStudentFilter: function () {
         MessageBox.information(
-          "All filters are updated dynamically as you type or select."
-          + "\n\nName and Degree must be written in full to match a Name or Degree."
-          + "\n\nName and Degree filters are case-insensitive."
-          + "\n\nTo clear filters, use the 'Clear' button."
+          "All filters are updated dynamically as you type or select." +
+            "\n\nName and Degree must be written in full to match a Name or Degree." +
+            "\n\nName and Degree filters are case-insensitive." +
+            "\n\nTo clear filters, use the 'Clear filters' button."
         );
       },
 
@@ -316,6 +323,32 @@ sap.ui.define(
           error: function (oError) {
             console.error(`Failed to load distinct ${sField} values`, oError);
           },
+        });
+      },
+
+      handleDetailPress: function (oEvent) {
+        const oButton = oEvent.getSource();
+        const oView = this.getView();
+        const oContext = oButton.getBindingContext("cds"); // Use correct model name
+
+        if (!this._pPopover) {
+          this._pPopover = Fragment.load({
+            id: oView.getId(),
+            name: "abapstudents.view.fragments.GameDetails",
+            controller: this,
+          }).then(function (oPopover) {
+            oView.addDependent(oPopover);
+            return oPopover;
+          });
+        }
+
+        this._pPopover.then(function (oPopover) {
+          // Always update the binding context
+          oPopover.bindElement({
+            path: oContext.getPath(),
+            model: "cds",
+          });
+          oPopover.openBy(oButton);
         });
       },
     });

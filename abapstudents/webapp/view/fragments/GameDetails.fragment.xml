@@ -7,26 +7,50 @@
 		title="{cds>GameID}. {cds>Name}"
 		titleAlignment="Center"
 		placement="Auto"
+		contentWidth="500px"
 	>
-		<content>
+		<content >
 			<VBox class="sapUiSmallMargin">
-				<Text text="Genre: {cds>Genre}" />
-				<Text text="Platform: {cds>Platform}" />
-				<Text text="Publisher: {cds>Publisher}" />
-				<Text
-					text="Release Date: {
+				<HBox>
+					<Title text="Genre:" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
+					<Text text="{cds>Genre}" />
+				</HBox>
+
+				<HBox>
+					<Title text="Platform:" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
+					<Text text="{cds>Platform}" />
+				</HBox>
+
+				<HBox>
+					<Title text="Publisher:" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
+					<Text text="{cds>Publisher}" />
+				</HBox>
+
+				<HBox>
+					<Title text="Release Date:" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
+					<Text
+						text="{
 						path: 'cds>ReleaseDate',
 						type: 'sap.ui.model.type.Date',
 						formatOptions: { pattern: 'dd-MM-yyyy' }
 					}"
-				/>
-				<Image
-					src="{cds>CoverUrl}"
-					width="150px"
-					densityAware="false"
-					alt="Game Cover"
-				/>
-				<Text text="Description: {cds>Description}" />
+					/>
+				</HBox>
+
+				<VBox class="sapUiSmallMarginBottom">
+					<Title text="Cover:" level="H5" />
+					<Image
+						src="{cds>CoverUrl}"
+						width="150px"
+						densityAware="false"
+						alt="Game Cover"
+					/>
+				</VBox>
+
+				<VBox class="sapUiSmallMarginBottom">
+					<Title text="Description:" level="H5" />
+					<Text text="{cds>Description}" />
+				</VBox>
 			</VBox>
 		</content>
 	</Popover>
