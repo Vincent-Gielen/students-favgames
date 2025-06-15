@@ -102,8 +102,20 @@ sap.ui.define(
         if (!oData.Name) {
           this._validationModel.setProperty("/Name", false);
           this.getView().byId("nameInput").setPlaceholder("Name is required.");
+          this.getView().byId("nameInput").setValueStateText("Name is required.");
         } else {
           this._validationModel.setProperty("/Name", true);
+        }
+
+        if (oData.Name && oData.Name.length > 40) {
+          this._validationModel.setProperty("/Name", false);
+            this.getView().byId("nameInput").setValueStateText("Name cannot be longer than 40 characters.");
+          return;
+        }
+        if (oData.Degree && oData.Degree.length > 100) {
+          this._validationModel.setProperty("/Degree", false);
+          this.getView().byId("degreeInput").setValueStateText("Degree cannot be longer than 100 characters.");
+          return;
         }
 
         // Convert all input fields to uppercase before saving

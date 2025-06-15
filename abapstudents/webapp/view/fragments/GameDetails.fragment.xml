@@ -12,22 +12,22 @@
 		<content >
 			<VBox class="sapUiSmallMargin">
 				<HBox>
-					<Title text="Genre:" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
+					<Title text="{i18n>gamedetail.popover.genre}" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
 					<Text text="{cds>Genre}" />
 				</HBox>
 
 				<HBox>
-					<Title text="Platform:" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
+					<Title text="{i18n>gamedetail.popover.platform}" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
 					<Text text="{cds>Platform}" />
 				</HBox>
 
 				<HBox>
-					<Title text="Publisher:" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
+					<Title text="{i18n>gamedetail.popover.publisher}" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
 					<Text text="{cds>Publisher}" />
 				</HBox>
 
 				<HBox>
-					<Title text="Release Date:" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
+					<Title text="{i18n>gamedetail.popover.releasedate}" level="H5" class="sapUiTinyMarginEnd sapUiSmallMarginBottom" />
 					<Text
 						text="{
 						path: 'cds>ReleaseDate',
@@ -38,17 +38,17 @@
 				</HBox>
 
 				<VBox class="sapUiSmallMarginBottom">
-					<Title text="Cover:" level="H5" />
+					<Title text="{i18n>gamedetail.popover.cover}" level="H5" />
 					<Image
 						src="{cds>CoverUrl}"
 						width="150px"
 						densityAware="false"
-						alt="Game Cover"
+						alt="{i18n>gamedetail.popover.cover.alt}"
 					/>
 				</VBox>
 
 				<VBox class="sapUiSmallMarginBottom">
-					<Title text="Description:" level="H5" />
+					<Title text="{i18n>gamedetail.popover.description}" level="H5" />
 					<Text text="{cds>Description}" />
 				</VBox>
 			</VBox>

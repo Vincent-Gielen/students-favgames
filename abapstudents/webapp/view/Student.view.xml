@@ -75,13 +75,13 @@
 			}">
                                 <suggestionColumns>
                                     <Column>
-                                        <Label text="Game Title" />
+                                        <Label text="{i18n>favgamesTable.Title}" />
                                     </Column>
                                     <Column>
-                                        <Label text="Game Genre" />
+                                        <Label text="{i18n>favgamesTable.Genre}" />
                                     </Column>
                                     <Column>
-                                        <Label text="Game Platform" />
+                                        <Label text="{i18n>favgamesTable.Platform}" />
                                     </Column>
                                 </suggestionColumns>
                                 <suggestionRows>

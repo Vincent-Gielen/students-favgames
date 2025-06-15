@@ -67,39 +67,38 @@
                             noDataText="{i18n>studentsTable.noDataText}">
                             <headerToolbar>
                                 <Toolbar>
-                                    <Label text="Name" />
+                                    <Label text="{i18n>studentsTable.column.name}" />
                                     <SearchField id="filterName"
                                         liveChange="onFilterChange"
                                         width="12rem" />
 
-                                    <Label text="Gender" />
+                                    <Label text="{i18n>studentsTable.column.gender}" />
                                     <Select id="filterGender" change="onFilterChange"
                                         width="7rem">
                                         <items>
-                                            <core:Item key="" text="All" />
-                                            <core:Item key="M" text="Male" />
-                                            <core:Item key="F" text="Female" />
-                                            <core:Item key="X" text="Unknown" />
+                                            <core:Item key="" text="{i18n>studentsTable.filter.gender.all}" />
+                                            <core:Item key="M" text="{i18n>studentsTable.filter.gender.male}" />
+                                            <core:Item key="F" text="{i18n>studentsTable.filter.gender.female}" />
+                                            <core:Item key="X" text="{i18n>studentsTable.filter.gender.other}" />
                                         </items>
                                     </Select>
 
-                                    <Label text="Degree" />
+                                    <Label text="{i18n>studentsTable.column.degree}" />
                                     <SearchField id="filterDegree"
                                         liveChange="onFilterChange"
                                         width="10rem" />
 
-                                    <Label text="Platform" />
+                                    <Label text="{i18n>studentsTable.column.console}" />
                                     <Select id="filterConsole" change="onFilterChange"
                                         width="8rem">
                                         <items>
-                                            <core:Item key="" text="All" />
-                                            <core:Item key="PC" text="PC" />
-                                            <core:Item key="PHONE" text="Phone" />
-                                            <core:Item key="XBOX" text="Xbox" />
-                                            <core:Item key="PLAYSTATION"
-                                                text="PlayStation" />
-                                            <core:Item key="NINTENDO" text="Nintendo" />
-                                            <core:Item key="WII" text="Wii" />
+                                            <core:Item key="" text="{i18n>studentsTable.filter.console.all}" />
+                                            <core:Item key="PC" text="{i18n>studentsTable.filter.console.pc}" />
+                                            <core:Item key="MOBILE" text="{i18n>studentsTable.filter.console.mobile}" />
+                                            <core:Item key="XBOX" text="{i18n>studentsTable.filter.console.xbox}" />
+                                            <core:Item key="PLAYSTATION" text="{i18n>studentsTable.filter.console.playstation}" />
+                                            <core:Item key="NINTENDO" text="{i18n>studentsTable.filter.console.nintendo}" />
+                                            <core:Item key="WII" text="{i18n>studentsTable.filter.console.wii}" />
                                         </items>
                                     </Select>
                                     <Button
@@ -177,55 +176,27 @@
                             width="auto">
                             <headerToolbar>
                                 <Toolbar>
-                                    <Label text="Title" />
+                                    <Label text="{i18n>gamesTable.column.title}" />
                                     <SearchField id="filterTitle"
                                         liveChange="onGamesFilterChange"
                                         width="10rem" />
 
-                                    <Label text="Genre" />
+                                    <Label text="{i18n>gamesTable.column.genre}" />
                                     <Select id="filterGenre" change="onGamesFilterChange"
                                         width="8rem">
                                         <!-- dit doen we nu dynamisch in de controller -->
-                                        <!-- <items>
-                                            <core:Item key="" text="All" />
-                                            <core:Item key="Action" text="Action" />
-                                            <core:Item key="Adventure" text="Adventure" />
-                                            <core:Item key="Card &amp; Board Game" text="Card &amp; Board Game" />
-                                            <core:Item key="Fighting" text="Fighting" />
-                                            <core:Item key="Hack and slash/Beat 'em up" text="Hack and slash/Beat 'em up" />
-                                            <core:Item key="Music" text="Music" />
-                                            <core:Item key="Platform" text="Platform" />
-                                            <core:Item key="Point-and-click" text="Point-and-click" />
-                                            <core:Item key="Puzzle" text="Puzzle" />
-                                            <core:Item key="Quiz/Trivia" text="Quiz/Trivia" />
-                                            <core:Item key="Racing" text="Racing" />
-                                            <core:Item key="Real Time Strategy (RTS)" text="Real Time Strategy (RTS)" />
-                                            <core:Item key="Role-playing (RPG)" text="Role-playing (RPG)" />
-                                            <core:Item key="Shooter" text="Shooter" />
-                                            <core:Item key="Simulator" text="Simulator" />
-                                            <core:Item key="Strategy" text="Strategy" />
+                                         <!-- <items>
                                         </items> -->
                                     </Select>
-                                    <Label text="Publisher" />
+                                    <Label text="{i18n>gamesTable.column.publisher}" />
                                     <SearchField id="filterPublisher"
                                         liveChange="onGamesFilterChange"
                                         width="10rem" />
-                                    <Label text="Platform" />
+                                    <Label text="{i18n>gamesTable.column.platform}" />
                                     <Select id="filterPlatform" change="onGamesFilterChange"
                                         width="8rem">
                                         <!-- dit doen we nu dynamisch in de controller -->
                                         <!-- <items>
-                                            <core:Item key="" text="All" />
-                                            <core:Item key="PC" text="PC" />
-                                            <core:Item key="DOS" text="DOS" />
-                                            <core:Item key="WII" text="Wii" />
-                                            <core:Item key="NINTENDO" text="Nintendo" />
-                                            <core:Item key="PLAYSTATION" text="PlayStation" />
-                                            <core:Item key="COMMODORE" text="Commodore" />
-                                            <core:Item key="IOS" text="iOS" />
-                                            <core:Item key="ANDROID" text="Android" />
-                                            <core:Item key="GAME BOY" text="Game Boy" />
-                                            <core:Item key="XBOX" text="Xbox" />
                                         </items> -->
                                     </Select>
                                 </Toolbar>

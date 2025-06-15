@@ -4,7 +4,7 @@
   xmlns:fb="sap.ui.comp.filterbar"
   xmlns:core="sap.ui.core">
   <ValueHelpDialog
-    title="Game"
+    title="{i18n>valuehelp.title}"
     ok=".onValueHelpOkPress"
     cancel=".onValueHelpCancelPress"
     afterClose=".onValueHelpAfterClose"
@@ -27,7 +27,7 @@
           <fb:FilterGroupItem
             groupName="__$INTERNAL$"
             name="Name"
-            label="Game Title"
+            label="{i18n>valuehelp.label.title}"
             visibleInFilterBar="true">
             <fb:control>
               <m:Input name="Name" />
@@ -36,7 +36,7 @@
           <fb:FilterGroupItem
             groupName="__$INTERNAL$"
             name="Genre"
-            label="Game Genre"
+            label="{i18n>valuehelp.label.genre}"
             visibleInFilterBar="true">
             <fb:control>
               <m:Input name="Genre" />
@@ -45,7 +45,7 @@
           <fb:FilterGroupItem
             groupName="__$INTERNAL$"
             name="Platform"
-            label="Game Platform"
+            label="{i18n>valuehelp.label.platform}"
             visibleInFilterBar="true">
             <fb:control>
               <m:Input name="Platform" />

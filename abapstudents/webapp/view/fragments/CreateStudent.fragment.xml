@@ -19,35 +19,37 @@
 
           <Label text="{i18n>dialog.student.field.name}" required="true" />
           <Input
-          id="nameInput"
+            id="nameInput"
             value="{input>/Name}"
             valueState="{= ${validation>/Name} === false ? 'Error' : 'None' }"
-            valueStateText="Name is required." 
-            placeholder="Type a Name"/>
+            valueStateText=""
+            placeholder="{i18n>dialog.student.placeholder.name}" />
 
           <Label text="{i18n>dialog.student.field.gender}" />
           <Select selectedKey="{input>/Gender}">
             <items>
-              <core:Item key="" text="Select Gender" />
-              <core:Item key="M" text="Male" />
-              <core:Item key="F" text="Female" />
-              <core:Item key="X" text="Unknown" />
+              <core:Item key="" text="{i18n>dialog.student.select.gender}" />
+                <core:Item key="M" text="{i18n>studentsTable.filter.gender.male}" />
+                <core:Item key="F" text="{i18n>studentsTable.filter.gender.female}" />
+                <core:Item key="X" text="{i18n>studentsTable.filter.gender.unknown}" />
             </items>
           </Select>
 
           <Label text="{i18n>dialog.student.field.degree}" />
-          <Input value="{input>/Degree}" placeholder="Type a Degree"/>
+          <Input id="degreeInput" value="{input>/Degree}"
+            valueState="{= ${validation>/Degree} === false ? 'Error' : 'None' }"
+            valueStateText="" placeholder="{i18n>dialog.student.placeholder.degree}" />
 
           <Label text="{i18n>dialog.student.field.console}" />
           <Select selectedKey="{input>/Console}">
             <items>
-              <core:Item key="" text="Select Console" />
-              <core:Item key="PC" text="PC" />
-              <core:Item key="PHONE" text="Phone" />
-              <core:Item key="XBOX" text="Xbox" />
-              <core:Item key="PLAYSTATION" text="PlayStation" />
-              <core:Item key="NINTENDO" text="Nintendo" />
-              <core:Item key="WII" text="Wii" />
+              <core:Item key="" text="{i18n>dialog.student.select.console}" />
+              <core:Item key="PC" text="{i18n>studentsTable.filter.console.pc}" />
+              <core:Item key="MOBILE" text="{i18n>studentsTable.filter.console.mobile}" />
+              <core:Item key="XBOX" text="{i18n>studentsTable.filter.console.xbox}" />
+              <core:Item key="PLAYSTATION" text="{i18n>studentsTable.filter.console.playstation}" />
+              <core:Item key="NINTENDO" text="{i18n>studentsTable.filter.console.nintendo}" />
+              <core:Item key="WII" text="{i18n>studentsTable.filter.console.wii}" />
             </items>
           </Select>
         </form:content>
