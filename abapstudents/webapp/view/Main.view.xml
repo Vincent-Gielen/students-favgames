@@ -199,6 +199,11 @@
                                         <!-- <items>
                                         </items> -->
                                     </Select>
+                                    <Button
+                                        icon="sap-icon://clear-filter"
+                                        tooltip="{i18n>dynamicPage.actions.clearFilters}"
+                                        type="Transparent"
+                                        press="onPressClearGameFilters" />
                                 </Toolbar>
                             </headerToolbar>
                             <columns>

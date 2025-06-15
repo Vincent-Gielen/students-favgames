@@ -66,14 +66,14 @@ sap.ui.define(
         console.log(sPath);
 
         MessageBox.confirm(
-          `Are you sure you want to delete student "${oData.Name}"?`,
+          `Are you sure you want to delete student ${oData.Name}?`,
           {
             title: "Confirm Deletion",
             onClose: function (sAction) {
               if (sAction === MessageBox.Action.OK) {
                 oModel.remove(sPath, {
                   success: function () {
-                    MessageBox.show("Student deleted successfully.");
+                    MessageBox.show(`${oData.Name} was deleted successfully.`);
                     oView.byId("studentsTable").getBinding("items").refresh();
                   },
                   error: function () {
@@ -227,6 +227,36 @@ sap.ui.define(
 
         // 2. Clear table filters
         const oTable = oView.byId("studentsTable");
+        if (oTable) {
+          const oBinding = oTable.getBinding("items");
+          if (oBinding) {
+            oBinding.filter([]); // Remove all filters
+          }
+        }
+      },
+
+      onPressClearGameFilters: function () {
+        const oView = this.getView();
+
+        // 1. Clear input fields
+        const aFilterInputs = [
+          oView.byId("filterTitle"),
+          oView.byId("filterGenre"),
+          oView.byId("filterPublisher"),
+          oView.byId("filterPlatform"),
+        ];
+
+        // het is of een select (met key) of een input (met value)
+        aFilterInputs.forEach((oControl) => {
+          if (oControl.setSelectedKey) {
+            oControl.setSelectedKey("");
+          } else if (oControl.setValue) {
+            oControl.setValue("");
+          }
+        });
+
+        // 2. Clear table filters
+        const oTable = oView.byId("gamesTable");
         if (oTable) {
           const oBinding = oTable.getBinding("items");
           if (oBinding) {

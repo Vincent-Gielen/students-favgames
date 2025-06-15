@@ -100,7 +100,8 @@ sap.ui.define(
               //oColumnGameID,
               oColumnName,
               oColumnGenre,
-              oColumnPlatform;
+              oColumnPlatform,
+              oColumnDetails;
             this._oVHD = oDialog;
 
             this.getView().addDependent(oDialog);
@@ -156,40 +157,55 @@ sap.ui.define(
                   // oColumnGameID.data({
                   //   fieldName: "Game ID",
                   // });
-                  oColumnName = new UIColumn({
+                    oColumnName = new UIColumn({
                     label: new Label({ text: "Game Title" }),
                     template: new Text({
                       wrapping: false,
                       text: "{cds>Name}",
                     }),
-                  });
-                  oColumnName.data({
+                    });
+                    oColumnName.data({
                     fieldName: "Game Title",
-                  });
-                  oColumnGenre = new UIColumn({
+                    });
+                    oColumnGenre = new UIColumn({
                     label: new Label({ text: "Game Genre" }),
                     template: new Text({
                       wrapping: false,
                       text: "{cds>Genre}",
                     }),
-                  });
-                  oColumnGenre.data({
+                    });
+                    oColumnGenre.data({
                     fieldName: "Game Genre",
-                  });
-                  oColumnPlatform = new UIColumn({
+                    });
+                    oColumnPlatform = new UIColumn({
                     label: new Label({ text: "Game Platform" }),
                     template: new Text({
                       wrapping: false,
                       text: "{cds>Platform}",
                     }),
-                  });
-                  oColumnPlatform.data({
+                    });
+                    oColumnPlatform.data({
                     fieldName: "Game Platform",
-                  });
+                    });
+                    oColumnDetails = new UIColumn({
+                    label: new Label({ text: "Game Details" }),
+                    template: new sap.m.Button({
+                      icon: "sap-icon://information",
+                      tooltip: "{i18n>gamesTable.button.details.tooltip}",
+                      type: "Transparent",
+                      press: this.handleDetailPress.bind(this)
+                    }),
+                    width: "12%"
+                    });
+                    oColumnDetails.data({
+                    fieldName: "Game Details",
+                    });
+                  
                   //oTable.addColumn(oColumnGameID);
                   oTable.addColumn(oColumnName);
                   oTable.addColumn(oColumnGenre);
                   oTable.addColumn(oColumnPlatform);
+                  oTable.addColumn(oColumnDetails);
                 }
 
                 // Niet nodig denk ik, aangezien ik niet op mobile werk

@@ -31,7 +31,7 @@
               <core:Item key="" text="{i18n>dialog.student.select.gender}" />
                 <core:Item key="M" text="{i18n>studentsTable.filter.gender.male}" />
                 <core:Item key="F" text="{i18n>studentsTable.filter.gender.female}" />
-                <core:Item key="X" text="{i18n>studentsTable.filter.gender.unknown}" />
+                <core:Item key="X" text="{i18n>studentsTable.filter.gender.other}" />
             </items>
           </Select>
 
